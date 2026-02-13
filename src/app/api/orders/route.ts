@@ -1,17 +1,10 @@
-﻿import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
 const CreateOrderSchema = z.object({
   userEmail: z.string().email(),
-  items: z
-    .array(
-      z.object({
-        productSlug: z.string().min(1),
-        quantity: z.number().int().positive()
-      })
-    )
-    .min(1)
+  items: z.array(z.object({ productSlug: z.string().min(1), quantity: z.number().int().positive() })).min(1)
 });
 
 export async function POST(req: Request) {
@@ -29,9 +22,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unknown user" }, { status: 404 });
   }
 
-  const products = await prisma.product.findMany({
-    where: { slug: { in: items.map((i) => i.productSlug) }, active: true }
-  });
+  const products = await prisma.product.findMany({ where: { slug: { in: items.map((i) => i.productSlug) }, active: true } });
 
   if (products.length !== items.length) {
     return NextResponse.json({ error: "One or more products are invalid" }, { status: 400 });
@@ -53,14 +44,8 @@ export async function POST(req: Request) {
     data: {
       userId: user.id,
       totalCents,
-      items: {
-        create: itemRows
-      },
-      payment: {
-        create: {
-          amountCents: totalCents
-        }
-      }
+      items: { create: itemRows },
+      payment: { create: { amountCents: totalCents } }
     },
     include: { items: true, payment: true }
   });

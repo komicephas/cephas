@@ -1,4 +1,4 @@
-﻿# SaaS Starter: Next.js + Prisma + Neon + Vercel
+# SaaS Starter: Next.js + Prisma + Neon + Vercel
 
 ## 1) Prerequis
 - Node.js 22+

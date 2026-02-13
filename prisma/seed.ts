@@ -1,4 +1,4 @@
-﻿import { PrismaClient, UserRole } from "@prisma/client";
+import { PrismaClient, UserRole } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -14,18 +14,8 @@ async function main() {
   });
 
   const products = [
-    {
-      name: "Starter Plan",
-      slug: "starter-plan",
-      description: "Plan de base",
-      priceCents: 1900
-    },
-    {
-      name: "Pro Plan",
-      slug: "pro-plan",
-      description: "Plan pro",
-      priceCents: 4900
-    }
+    { name: "Starter Plan", slug: "starter-plan", description: "Plan de base", priceCents: 1900 },
+    { name: "Pro Plan", slug: "pro-plan", description: "Plan pro", priceCents: 4900 }
   ];
 
   for (const product of products) {

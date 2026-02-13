@@ -1,7 +1,7 @@
-﻿export default function HomePage() {
+export default function HomePage() {
   return (
     <main>
-      <h1>SaaS Starter prêt</h1>
+      <h1>SaaS Starter pret</h1>
       <p>Stack: Next.js 15 + Prisma + PostgreSQL (Neon) + Vercel.</p>
 
       <div className="card">
@@ -14,10 +14,7 @@
 
       <div className="card" style={{ marginTop: 16 }}>
         <h2>Commande locale</h2>
-        <pre>{`npm install
-npx prisma migrate dev --name init
-npm run prisma:seed
-npm run dev`}</pre>
+        <pre>{`npm install\nnpx prisma migrate dev --name init\nnpm run prisma:seed\nnpm run dev`}</pre>
       </div>
     </main>
   );
